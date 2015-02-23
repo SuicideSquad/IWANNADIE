@@ -13,6 +13,8 @@ public class CharacterMotor : MonoBehaviour
     bool canControl = true;
     bool useFixedUpdate = true;
 
+    KeyCode runkey = KeyCode.LeftShift;
+
     // For the next variables, [System.NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
     // Very handy for organization!
 
@@ -260,7 +262,7 @@ public class CharacterMotor : MonoBehaviour
             }
         }
 
-        // Calculate the velocity based on the current and previous position.  
+        // Calculate the velocity based on the current and previous position.
         // This means our velocity will only be the amount the character actually moved as a result of collisions.
         Vector3 oldHVelocity = new Vector3(velocity.x, 0, velocity.z);
         movement.velocity = (tr.position - lastPosition) / Time.deltaTime;
@@ -328,7 +330,7 @@ public class CharacterMotor : MonoBehaviour
         if(MoveWithPlatform())
         {
             // Use the center of the lower half sphere of the capsule as reference point.
-            // This works best when the character is standing on moving tilting platforms. 
+            // This works best when the character is standing on moving tilting platforms.
             movingPlatform.activeGlobalPoint = tr.position + Vector3.up * (controller.center.y - controller.height * 0.5f + controller.radius);
             movingPlatform.activeLocalPoint = movingPlatform.activePlatform.InverseTransformPoint(movingPlatform.activeGlobalPoint);
 
@@ -422,6 +424,13 @@ public class CharacterMotor : MonoBehaviour
             // Not moving it upwards manually prevent risk of lifting off from the ground.
             // When going downhill, DO move down manually, as gravity is not enough on steep hills.
             velocity.y = Mathf.Min(velocity.y, 0);
+        }
+
+        print(velocity.z);
+
+        if(Input.GetKey(runkey)){
+            velocity.x *= 1.1*(12-velocity);
+            velocity.z = 1.1f;
         }
 
         return velocity;
@@ -589,7 +598,7 @@ public class CharacterMotor : MonoBehaviour
 
     float CalculateJumpVerticalSpeed(float targetJumpHeight)
     {
-        // From the jump height and gravity we deduce the upwards speed 
+        // From the jump height and gravity we deduce the upwards speed
         // for the character to reach at the apex.
         return Mathf.Sqrt(2 * targetJumpHeight * movement.gravity);
     }
