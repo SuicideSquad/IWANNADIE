@@ -13,8 +13,6 @@ public class CharacterMotor : MonoBehaviour
     bool canControl = true;
     bool useFixedUpdate = true;
 
-    KeyCode runkey = KeyCode.LeftShift;
-
     // For the next variables, [System.NonSerialized] tells Unity to not serialize the variable or show it in the inspector view.
     // Very handy for organization!
 
@@ -34,6 +32,7 @@ public class CharacterMotor : MonoBehaviour
         public float maxForwardSpeed = 3.0f;
         public float maxSidewaysSpeed = 2.0f;
         public float maxBackwardsSpeed = 2.0f;
+        public float maxForwardRunSpeed = 12.0f;
 
         // Curve for multiplying speed based on slope(negative = downwards)
         public AnimationCurve slopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
@@ -211,11 +210,11 @@ public class CharacterMotor : MonoBehaviour
 
         // Moving platform support
         Vector3 moveDistance = Vector3.zero;
-        if(MoveWithPlatform())
+        if (MoveWithPlatform())
         {
             Vector3 newGlobalPoint = movingPlatform.activePlatform.TransformPoint(movingPlatform.activeLocalPoint);
             moveDistance = (newGlobalPoint - movingPlatform.activeGlobalPoint);
-            if(moveDistance != Vector3.zero)
+            if (moveDistance != Vector3.zero)
                 controller.Move(moveDistance);
 
             // Support moving platform rotation as well:
@@ -223,7 +222,7 @@ public class CharacterMotor : MonoBehaviour
             Quaternion rotationDiff = newGlobalRotation * Quaternion.Inverse(movingPlatform.activeGlobalRotation);
 
             var yRotation = rotationDiff.eulerAngles.y;
-            if(yRotation != 0)
+            if (yRotation != 0)
             {
                 // Prevent rotation of the local up vector
                 tr.Rotate(0, yRotation, 0);
@@ -239,7 +238,7 @@ public class CharacterMotor : MonoBehaviour
         // Find out how much we need to push towards the ground to avoid loosing grouning
         // when walking down a step or over a sharp change in slope.
         float pushDownOffset = Mathf.Max(controller.stepOffset, new Vector3(currentMovementOffset.x, 0, currentMovementOffset.z).magnitude);
-        if(grounded)
+        if (grounded)
             currentMovementOffset -= pushDownOffset * Vector3.up;
 
         // Reset variables that will be set by collision function
@@ -252,9 +251,9 @@ public class CharacterMotor : MonoBehaviour
         movement.lastHitPoint = movement.hitPoint;
         lastGroundNormal = groundNormal;
 
-        if(movingPlatform.enabled && movingPlatform.activePlatform != movingPlatform.hitPlatform)
+        if (movingPlatform.enabled && movingPlatform.activePlatform != movingPlatform.hitPlatform)
         {
-            if(movingPlatform.hitPlatform != null)
+            if (movingPlatform.hitPlatform != null)
             {
                 movingPlatform.activePlatform = movingPlatform.hitPlatform;
                 movingPlatform.lastMatrix = movingPlatform.hitPlatform.localToWorldMatrix;
@@ -270,7 +269,7 @@ public class CharacterMotor : MonoBehaviour
 
         // The CharacterController can be moved in unwanted directions when colliding with things.
         // We want to prevent this from influencing the recorded velocity.
-        if(oldHVelocity == Vector3.zero)
+        if (oldHVelocity == Vector3.zero)
         {
             movement.velocity = new Vector3(0, movement.velocity.y, 0);
         }
@@ -280,9 +279,9 @@ public class CharacterMotor : MonoBehaviour
             movement.velocity = oldHVelocity * Mathf.Clamp01(projectedNewVelocity) + movement.velocity.y * Vector3.up;
         }
 
-        if(movement.velocity.y < velocity.y - 0.001)
+        if (movement.velocity.y < velocity.y - 0.001)
         {
-            if(movement.velocity.y < 0)
+            if (movement.velocity.y < 0)
             {
                 // Something is forcing the CharacterController down faster than it should.
                 // Ignore this
@@ -297,12 +296,12 @@ public class CharacterMotor : MonoBehaviour
         }
 
         // We were grounded but just loosed grounding
-        if(grounded && !IsGroundedTest())
+        if (grounded && !IsGroundedTest())
         {
             grounded = false;
 
             // Apply inertia from platform
-            if(movingPlatform.enabled &&
+            if (movingPlatform.enabled &&
                 (movingPlatform.movementTransfer == MovementTransferOnJump.InitTransfer ||
                 movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
             )
@@ -317,7 +316,7 @@ public class CharacterMotor : MonoBehaviour
             tr.position += pushDownOffset * Vector3.up;
         }
         // We were not grounded but just landed on something
-        else if(!grounded && IsGroundedTest())
+        else if (!grounded && IsGroundedTest())
         {
             grounded = true;
             jumping.jumping = false;
@@ -327,7 +326,7 @@ public class CharacterMotor : MonoBehaviour
         }
 
         // Moving platforms support
-        if(MoveWithPlatform())
+        if (MoveWithPlatform())
         {
             // Use the center of the lower half sphere of the capsule as reference point.
             // This works best when the character is standing on moving tilting platforms.
@@ -342,11 +341,11 @@ public class CharacterMotor : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(movingPlatform.enabled)
+        if (movingPlatform.enabled)
         {
-            if(movingPlatform.activePlatform != null)
+            if (movingPlatform.activePlatform != null)
             {
-                if(!movingPlatform.newPlatform)
+                if (!movingPlatform.newPlatform)
                 {
                     // unused: Vector3 lastVelocity = movingPlatform.platformVelocity;
 
@@ -364,24 +363,24 @@ public class CharacterMotor : MonoBehaviour
             }
         }
 
-        if(useFixedUpdate)
+        if (useFixedUpdate)
             UpdateFunction();
     }
 
     void Update()
     {
-        if(!useFixedUpdate)
+        if (!useFixedUpdate)
             UpdateFunction();
     }
 
     private Vector3 ApplyInputVelocityChange(Vector3 velocity)
     {
-        if(!canControl)
+        if (!canControl)
             inputMoveDirection = Vector3.zero;
 
         // Find desired velocity
         Vector3 desiredVelocity;
-        if(grounded && TooSteep())
+        if (grounded && TooSteep())
         {
             // The direction we're sliding in
             desiredVelocity = new Vector3(groundNormal.x, 0, groundNormal.z).normalized;
@@ -395,13 +394,13 @@ public class CharacterMotor : MonoBehaviour
         else
             desiredVelocity = GetDesiredHorizontalVelocity();
 
-        if(movingPlatform.enabled && movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
+        if (movingPlatform.enabled && movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
         {
             desiredVelocity += movement.frameVelocity;
             desiredVelocity.y = 0;
         }
 
-        if(grounded)
+        if (grounded)
             desiredVelocity = AdjustGroundVelocityToNormal(desiredVelocity, groundNormal);
         else
             velocity.y = 0;
@@ -409,28 +408,21 @@ public class CharacterMotor : MonoBehaviour
         // Enforce max velocity change
         float maxVelocityChange = GetMaxAcceleration(grounded) * Time.deltaTime;
         Vector3 velocityChangeVector = (desiredVelocity - velocity);
-        if(velocityChangeVector.sqrMagnitude > maxVelocityChange * maxVelocityChange)
+        if (velocityChangeVector.sqrMagnitude > maxVelocityChange * maxVelocityChange)
         {
             velocityChangeVector = velocityChangeVector.normalized * maxVelocityChange;
         }
         // ifwe're in the air and don't have control, don't apply any velocity change at all.
         // ifwe're on the ground and don't have control we do apply it - it will correspond to friction.
-        if(grounded || canControl)
+        if (grounded || canControl)
             velocity += velocityChangeVector;
 
-        if(grounded)
+        if (grounded)
         {
             // When going uphill, the CharacterController will automatically move up by the needed amount.
             // Not moving it upwards manually prevent risk of lifting off from the ground.
             // When going downhill, DO move down manually, as gravity is not enough on steep hills.
             velocity.y = Mathf.Min(velocity.y, 0);
-        }
-
-        print(velocity.z);
-
-        if(Input.GetKey(runkey)){
-            velocity.x *= 1.1*(12-velocity);
-            velocity.z = 1.1f;
         }
 
         return velocity;
@@ -439,16 +431,16 @@ public class CharacterMotor : MonoBehaviour
     private Vector3 ApplyGravityAndJumping(Vector3 velocity)
     {
 
-        if(!inputJump || !canControl)
+        if (!inputJump || !canControl)
         {
             jumping.holdingJumpButton = false;
             jumping.lastButtonDownTime = -100;
         }
 
-        if(inputJump && jumping.lastButtonDownTime < 0 && canControl)
+        if (inputJump && jumping.lastButtonDownTime < 0 && canControl)
             jumping.lastButtonDownTime = Time.time;
 
-        if(grounded)
+        if (grounded)
             velocity.y = Mathf.Min(0, velocity.y) - movement.gravity * Time.deltaTime;
         else
         {
@@ -456,11 +448,11 @@ public class CharacterMotor : MonoBehaviour
 
             // When jumping up we don't apply gravity for some time when the user is holding the jump button.
             // This gives more control over jump height by pressing the button longer.
-            if(jumping.jumping && jumping.holdingJumpButton)
+            if (jumping.jumping && jumping.holdingJumpButton)
             {
                 // Calculate the duration that the extra jump force should have effect.
                 // ifwe're still less than that duration after the jumping time, apply the force.
-                if(Time.time < jumping.lastStartTime + jumping.extraHeight / CalculateJumpVerticalSpeed(jumping.baseHeight))
+                if (Time.time < jumping.lastStartTime + jumping.extraHeight / CalculateJumpVerticalSpeed(jumping.baseHeight))
                 {
                     // Negate the gravity we just applied, except we push in jumpDir rather than jump upwards.
                     velocity += jumping.jumpDir * movement.gravity * Time.deltaTime;
@@ -471,14 +463,14 @@ public class CharacterMotor : MonoBehaviour
             velocity.y = Mathf.Max(velocity.y, -movement.maxFallSpeed);
         }
 
-        if(grounded)
+        if (grounded)
         {
             // Jump only ifthe jump button was pressed down in the last 0.2 seconds.
             // We use this check instead of checking ifit's pressed down right now
             // because players will often try to jump in the exact moment when hitting the ground after a jump
             // and ifthey hit the button a fraction of a second too soon and no new jump happens as a consequence,
             // it's confusing and it feels like the game is buggy.
-            if(jumping.enabled && canControl && (Time.time - jumping.lastButtonDownTime < 0.2))
+            if (jumping.enabled && canControl && (Time.time - jumping.lastButtonDownTime < 0.2))
             {
                 grounded = false;
                 jumping.jumping = true;
@@ -487,7 +479,7 @@ public class CharacterMotor : MonoBehaviour
                 jumping.holdingJumpButton = true;
 
                 // Calculate the jumping direction
-                if(TooSteep())
+                if (TooSteep())
                     jumping.jumpDir = Vector3.Slerp(Vector3.up, groundNormal, jumping.steepPerpAmount);
                 else
                     jumping.jumpDir = Vector3.Slerp(Vector3.up, groundNormal, jumping.perpAmount);
@@ -497,7 +489,7 @@ public class CharacterMotor : MonoBehaviour
                 velocity += jumping.jumpDir * CalculateJumpVerticalSpeed(jumping.baseHeight);
 
                 // Apply inertia from platform
-                if(movingPlatform.enabled &&
+                if (movingPlatform.enabled &&
                     (movingPlatform.movementTransfer == MovementTransferOnJump.InitTransfer ||
                     movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer)
                 )
@@ -519,9 +511,9 @@ public class CharacterMotor : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if(hit.normal.y > 0 && hit.normal.y > groundNormal.y && hit.moveDirection.y < 0)
+        if (hit.normal.y > 0 && hit.normal.y > groundNormal.y && hit.moveDirection.y < 0)
         {
-            if((hit.point - movement.lastHitPoint).sqrMagnitude > 0.001 || lastGroundNormal == Vector3.zero)
+            if ((hit.point - movement.lastHitPoint).sqrMagnitude > 0.001 || lastGroundNormal == Vector3.zero)
                 groundNormal = hit.normal;
             else
                 groundNormal = lastGroundNormal;
@@ -536,18 +528,18 @@ public class CharacterMotor : MonoBehaviour
     {
         // When landing, subtract the velocity of the new ground from the character's velocity
         // since movement in ground is relative to the movement of the ground.
-        if(movingPlatform.enabled &&
+        if (movingPlatform.enabled &&
           (movingPlatform.movementTransfer == MovementTransferOnJump.InitTransfer ||
            movingPlatform.movementTransfer == MovementTransferOnJump.PermaTransfer))
         {
             // if we landed on a new platform, we have to wait for two FixedUpdates
             // before we know the velocity of the platform under the character
-            if(movingPlatform.newPlatform)
+            if (movingPlatform.newPlatform)
             {
                 Transform platform = movingPlatform.activePlatform;
                 yield return new WaitForFixedUpdate();
                 yield return new WaitForFixedUpdate();
-                if(grounded && platform == movingPlatform.activePlatform)
+                if (grounded && platform == movingPlatform.activePlatform)
                     yield break;
             }
             movement.velocity -= movingPlatform.platformVelocity;
@@ -567,7 +559,7 @@ public class CharacterMotor : MonoBehaviour
         // Find desired velocity
         Vector3 desiredLocalDirection = tr.InverseTransformDirection(inputMoveDirection);
         float maxSpeed = MaxSpeedInDirection(desiredLocalDirection);
-        if(grounded)
+        if (grounded)
         {
             // Modify max speed on slopes based on slope speed multiplier curve
             var movementSlopeAngle = Mathf.Asin(movement.velocity.normalized.y) * Mathf.Rad2Deg;
@@ -590,7 +582,7 @@ public class CharacterMotor : MonoBehaviour
     float GetMaxAcceleration(bool grounded)
     {
         // Maximum acceleration on ground and in air
-        if(grounded)
+        if (grounded)
             return movement.maxGroundAcceleration;
         else
             return movement.maxAirAcceleration;
@@ -642,11 +634,16 @@ public class CharacterMotor : MonoBehaviour
     // The function returns the length of the resulting vector.
     float MaxSpeedInDirection(Vector3 desiredMovementDirection)
     {
-        if(desiredMovementDirection == Vector3.zero)
+        if (desiredMovementDirection == Vector3.zero)
             return 0;
         else
         {
-            float zAxisEllipseMultiplier = (desiredMovementDirection.z > 0 ? movement.maxForwardSpeed : movement.maxBackwardsSpeed) / movement.maxSidewaysSpeed;
+            float maxSpeed;
+            if (Input.GetButton("Run")){
+                maxSpeed = movement.maxForwardRunSpeed;}
+            else
+                maxSpeed = movement.maxForwardSpeed;
+            float zAxisEllipseMultiplier = (desiredMovementDirection.z > 0 ? maxSpeed : movement.maxBackwardsSpeed) / movement.maxSidewaysSpeed;
             Vector3 temp = new Vector3(desiredMovementDirection.x, 0, desiredMovementDirection.z / zAxisEllipseMultiplier).normalized;
             float length = new Vector3(temp.x, 0, temp.z * zAxisEllipseMultiplier).magnitude * movement.maxSidewaysSpeed;
             return length;
