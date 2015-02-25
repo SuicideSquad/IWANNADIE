@@ -25,6 +25,8 @@ public class CharacterMotor : MonoBehaviour
     [System.NonSerialized]
     public bool inputJump = false;
 
+    public bool isrunning = false;
+
     [System.Serializable]
     public class CharacterMotorMovement
     {
@@ -638,8 +640,12 @@ public class CharacterMotor : MonoBehaviour
             return 0;
         else
         {
+            if (Input.GetButton("Run") && grounded)
+                isrunning = true;
+            if (!Input.GetButton("Run") && grounded)
+                isrunning = false;
             float maxSpeed;
-            if (Input.GetButton("Run")){
+            if (isrunning){
                 maxSpeed = movement.maxForwardRunSpeed;}
             else
                 maxSpeed = movement.maxForwardSpeed;
