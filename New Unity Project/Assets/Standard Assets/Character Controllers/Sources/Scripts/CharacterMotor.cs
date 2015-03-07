@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.UI;
 
 // Require a character controller to be attached to the same game object
 [RequireComponent(typeof(CharacterController))]
@@ -375,6 +374,8 @@ public class CharacterMotor : MonoBehaviour
     {
         if (!useFixedUpdate)
             UpdateFunction();
+        if (transform.position.y < -50)
+            transform.position = new Vector3(-0.5915604f, 7f, -2.44369f);
     }
 
     private Vector3 ApplyInputVelocityChange(Vector3 velocity)
