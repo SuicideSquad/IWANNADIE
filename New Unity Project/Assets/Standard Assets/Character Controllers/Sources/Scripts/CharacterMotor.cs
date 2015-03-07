@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 // Require a character controller to be attached to the same game object
 [RequireComponent(typeof(CharacterController))]
@@ -25,6 +26,7 @@ public class CharacterMotor : MonoBehaviour
     [System.NonSerialized]
     public bool inputJump = false;
 
+    [System.NonSerialized]
     public bool isrunning = false;
 
     [System.Serializable]
@@ -645,8 +647,10 @@ public class CharacterMotor : MonoBehaviour
             if (!Input.GetButton("Run") && grounded)
                 isrunning = false;
             float maxSpeed;
-            if (isrunning){
-                maxSpeed = movement.maxForwardRunSpeed;}
+            if (isrunning)
+            {
+                maxSpeed = movement.maxForwardRunSpeed;
+            }
             else
                 maxSpeed = movement.maxForwardSpeed;
             float zAxisEllipseMultiplier = (desiredMovementDirection.z > 0 ? maxSpeed : movement.maxBackwardsSpeed) / movement.maxSidewaysSpeed;
