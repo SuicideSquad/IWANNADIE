@@ -31,15 +31,17 @@ public class FadingScript : MonoBehaviour
             fadeIn("Press spacebar to jump");
         if (Input.GetButton("Jump") && status == 1)
             fadeOut();
+        if (Input.GetButton("Run") && status == 2)
+            fadeOut();
     }
 
-    void fadeIn(string text)
+    public void fadeIn(string text)
     {
         txt.text = text;
         txt.CrossFadeAlpha(1f, fadeInTime, false);
     }
 
-    void fadeOut()
+    public void fadeOut()
     {
         txt.CrossFadeAlpha(0f, fadeOutTime, false);
         timeSinceLastFadeout = Time.time;
