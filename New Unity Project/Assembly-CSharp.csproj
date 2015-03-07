@@ -46,7 +46,9 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CollisionScript.cs" />
+     <Compile Include="Assets\Collisionbox1.cs" />
+     <Compile Include="Assets\Collisionbox2.cs" />
+     <Compile Include="Assets\Collisionbox3.cs" />
      <Compile Include="Assets\FadingScript.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="UnityEngine.UI">

@@ -7,7 +7,8 @@ public class FadingScript : MonoBehaviour
 {
 
     Text txt;
-    int status;
+    [System.NonSerialized]
+    public int status;
     float timeSinceLastFadeout;
 
     [SerializeField]
@@ -39,6 +40,7 @@ public class FadingScript : MonoBehaviour
     {
         txt.text = text;
         txt.CrossFadeAlpha(1f, fadeInTime, false);
+        timeSinceLastFadeout = float.MaxValue;
     }
 
     public void fadeOut()
