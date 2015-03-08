@@ -46,10 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\ClimbLadder.cs" />
      <Compile Include="Assets\Collisionbox1.cs" />
      <Compile Include="Assets\Collisionbox2.cs" />
      <Compile Include="Assets\Collisionbox3.cs" />
      <Compile Include="Assets\FadingScript.cs" />
+     <Compile Include="Assets\InputBehaviour.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>H:/git/IWANNADIE/New Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>

@@ -25,16 +25,18 @@ public class CharacterMotor : MonoBehaviour
     [System.NonSerialized]
     public bool inputJump = false;
 
-    bool isrunning = false;
+    public bool isRunning = false;
+    public bool isCrouching = false;
 
     [System.Serializable]
     public class CharacterMotorMovement
     {
         // The maximum horizontal speed when moving
-        public float maxForwardSpeed = 3.0f;
+        public float maxForwardWalkingSpeed = 3.0f;
         public float maxSidewaysSpeed = 2.0f;
-        public float maxBackwardsSpeed = 2.0f;
+        public float maxBackwardWalkingSpeed = 2.0f;
         public float maxForwardRunSpeed = 12.0f;
+        public float maxCrouchSpeed = 3.0f;
 
         // Curve for multiplying speed based on slope(negative = downwards)
         public AnimationCurve slopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
@@ -371,13 +373,10 @@ public class CharacterMotor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.A))
-            Time.timeScale = 0.5f;
-        else
-            Time.timeScale = 1f;
         if (!useFixedUpdate)
             UpdateFunction();
-        if (transform.position.y < -50)
+
+        if (transform.position.y < -50) 
             transform.position = new Vector3(-0.5915604f, 7f, -2.44369f);
     }
 
@@ -646,18 +645,16 @@ public class CharacterMotor : MonoBehaviour
             return 0;
         else
         {
-            if (Input.GetButton("Run") && grounded)
-                isrunning = true;
-            if (!Input.GetButton("Run") && grounded)
-                isrunning = false;
-            float maxSpeed;
-            if (isrunning)
+            float maxForwardSpeed = movement.maxForwardWalkingSpeed;
+            float maxBackwardSpeed = movement.maxBackwardWalkingSpeed;
+            if (isRunning)
+                maxForwardSpeed = movement.maxForwardRunSpeed;
+            if (isCrouching)
             {
-                maxSpeed = movement.maxForwardRunSpeed;
+                maxForwardSpeed = movement.maxCrouchSpeed;
+                maxBackwardSpeed = maxForwardSpeed;
             }
-            else
-                maxSpeed = movement.maxForwardSpeed;
-            float zAxisEllipseMultiplier = (desiredMovementDirection.z > 0 ? maxSpeed : movement.maxBackwardsSpeed) / movement.maxSidewaysSpeed;
+            float zAxisEllipseMultiplier = (desiredMovementDirection.z > 0 ? maxForwardSpeed : maxBackwardSpeed) / movement.maxSidewaysSpeed;
             Vector3 temp = new Vector3(desiredMovementDirection.x, 0, desiredMovementDirection.z / zAxisEllipseMultiplier).normalized;
             float length = new Vector3(temp.x, 0, temp.z * zAxisEllipseMultiplier).magnitude * movement.maxSidewaysSpeed;
             return length;
