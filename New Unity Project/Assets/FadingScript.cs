@@ -26,7 +26,7 @@ public class FadingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButton("Horizontal") || Input.GetButton("Vertical") && status == 0)
+        if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && status == 0)
             fadeOut();
         if (Time.time - timeSinceLastFadeout > fadeOutTime && status == 1)
             fadeIn("Press spacebar to jump");

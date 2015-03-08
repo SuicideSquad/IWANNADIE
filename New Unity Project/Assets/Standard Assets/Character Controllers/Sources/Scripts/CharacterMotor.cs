@@ -25,8 +25,7 @@ public class CharacterMotor : MonoBehaviour
     [System.NonSerialized]
     public bool inputJump = false;
 
-    [System.NonSerialized]
-    public bool isrunning = false;
+    bool isrunning = false;
 
     [System.Serializable]
     public class CharacterMotorMovement
@@ -372,6 +371,10 @@ public class CharacterMotor : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.A))
+            Time.timeScale = 0.5f;
+        else
+            Time.timeScale = 1f;
         if (!useFixedUpdate)
             UpdateFunction();
         if (transform.position.y < -50)
