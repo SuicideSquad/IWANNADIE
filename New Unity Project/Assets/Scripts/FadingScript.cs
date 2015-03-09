@@ -44,7 +44,10 @@ public class FadingScript : MonoBehaviour
         if (Time.time - timeSinceLastFadeout > fadeOutTime && status == 6)
             fadeIn("Climb up the ladder with spacebar");
         if (Time.time - timeSinceLastFadeout > fadeOutTime && status == 7)
+        {
+            txt.GetComponent<RectTransform>().sizeDelta = new Vector2(1000f, 300f);
             fadeIn("Congratulations! You reached the end of the 2 first levels. Please visit suicide-squad.esy.es to get more information about the game development");
+        }
 
     }
 
