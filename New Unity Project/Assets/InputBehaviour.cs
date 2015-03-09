@@ -9,7 +9,7 @@ public class InputBehaviour : MonoBehaviour
     float defaultHeight;
 
     [SerializeField]
-    float crouchingHeightFactor = 0.2f;
+    float crawlingHeightFactor = 0.2f;
 
     void Start()
     {
@@ -30,14 +30,14 @@ public class InputBehaviour : MonoBehaviour
         if (!Input.GetButton("Run") && cm.grounded)
             cm.isRunning = false;
 
-        if (Input.GetButton("Crouch") && cm.grounded && !cm.isCrouching)
-            cm.isCrouching = true;
-        if (!Input.GetButton("Crouch") && cm.grounded && !Physics.Raycast(gameObject.transform.position, Vector3.up, defaultHeight * (1 - crouchingHeightFactor)))
-            cm.isCrouching = false;
-        cm.jumping.enabled = !cm.isCrouching;
-        if (cm.isCrouching)
+        if (Input.GetButton("Crawl") && cm.grounded && !cm.isCrawling)
+            cm.isCrawling = true;
+        if (!Input.GetButton("Crawl") && cm.grounded && !Physics.Raycast(gameObject.transform.position, Vector3.up, defaultHeight * (1 - crawlingHeightFactor)))
+            cm.isCrawling = false;
+        cm.jumping.enabled = !cm.isCrawling;
+        if (cm.isCrawling)
         {
-            cc.height = Mathf.Lerp(cc.height, defaultHeight * crouchingHeightFactor, Time.deltaTime * 10);
+            cc.height = Mathf.Lerp(cc.height, defaultHeight * crawlingHeightFactor, Time.deltaTime * 10);
         }
         else
         {
