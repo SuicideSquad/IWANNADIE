@@ -1,13 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class InputBehaviour : MonoBehaviour {
+public class InputBehaviour : MonoBehaviour
+{
 
     CharacterMotor cm;
+    CharacterController cc;
+    float defaultHeight;
 
-	void Start () {
+    [SerializeField]
+    float crouchingHeightFactor = 0.2f;
+
+    void Start()
+    {
         cm = gameObject.GetComponent<CharacterMotor>();
-	}
+        cc = gameObject.GetComponent<CharacterController>();
+        defaultHeight = cc.height;
+    }
 
     void Update()
     {
@@ -21,10 +30,18 @@ public class InputBehaviour : MonoBehaviour {
         if (!Input.GetButton("Run") && cm.grounded)
             cm.isRunning = false;
 
-        if (Input.GetButton("Crouch") && cm.grounded)
+        if (Input.GetButton("Crouch") && cm.grounded && !cm.isCrouching)
             cm.isCrouching = true;
-        if (!Input.GetButton("Crouch") && cm.grounded)
+        if (!Input.GetButton("Crouch") && cm.grounded && !Physics.Raycast(gameObject.transform.position, Vector3.up, defaultHeight * (1 - crouchingHeightFactor)))
             cm.isCrouching = false;
         cm.jumping.enabled = !cm.isCrouching;
-	}
+        if (cm.isCrouching)
+        {
+            cc.height = Mathf.Lerp(cc.height, defaultHeight * crouchingHeightFactor, Time.deltaTime * 10);
+        }
+        else
+        {
+            cc.height = Mathf.Lerp(cc.height, defaultHeight, Time.deltaTime * 10);
+        }
+    }
 }
