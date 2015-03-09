@@ -32,7 +32,9 @@ public class InputBehaviour : MonoBehaviour
 
         if (Input.GetButton("Crawl") && cm.grounded && !cm.isCrawling)
             cm.isCrawling = true;
-        if (!Input.GetButton("Crawl") && cm.grounded && !Physics.Raycast(gameObject.transform.position, Vector3.up, defaultHeight * (1 - crawlingHeightFactor)))
+        if (!Input.GetButton("Crawl") && cm.grounded
+            && !Physics.Raycast(gameObject.transform.position, Vector3.up, defaultHeight * (1 - crawlingHeightFactor))
+            && !Physics.Raycast(gameObject.transform.position, Vector3.forward,1f))
             cm.isCrawling = false;
         cm.jumping.enabled = !cm.isCrawling;
         if (cm.isCrawling)
