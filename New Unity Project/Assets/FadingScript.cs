@@ -5,10 +5,9 @@ using UnityEngine.UI;
 
 public class FadingScript : MonoBehaviour
 {
-
-    Text txt;
     [System.NonSerialized]
-    public int status;
+    public Text txt;
+    public int status = 0;
     float timeSinceLastFadeout;
 
     [SerializeField]
@@ -19,13 +18,14 @@ public class FadingScript : MonoBehaviour
     void Start()
     {
         txt = gameObject.GetComponent<Text>();
-        txt.text = "Press Z,Q,S,D or arrow keys to move";
-        status = 0;
+        txt.text = "";
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (status == 0)
+            txt.text = "Press Z,Q,S,D or arrow keys to move";
         if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && status == 0)
             fadeOut();
         if (Time.time - timeSinceLastFadeout > fadeOutTime && status == 1)
@@ -34,6 +34,18 @@ public class FadingScript : MonoBehaviour
             fadeOut();
         if (Input.GetButton("Run") && status == 2)
             fadeOut();
+        if (Input.GetButton("Crawl") && status == 4)
+            fadeOut();
+        if (Time.time - timeSinceLastFadeout > fadeOutTime && status == 5)
+        {
+            txt.GetComponent<RectTransform>().sizeDelta = new Vector2(450f, 300f);
+            fadeIn("You can't get up if you are crawling under some obstacle");
+        }
+        if (Time.time - timeSinceLastFadeout > fadeOutTime && status == 6)
+            fadeIn("Climb up the ladder with spacebar");
+        if (Time.time - timeSinceLastFadeout > fadeOutTime && status == 7)
+            fadeIn("Congratulations! You reached the end of the 2 first levels. Please visit suicide-squad.esy.es to get more information about the game development");
+
     }
 
     public void fadeIn(string text)

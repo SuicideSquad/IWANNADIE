@@ -25,7 +25,9 @@ public class CharacterMotor : MonoBehaviour
     [System.NonSerialized]
     public bool inputJump = false;
 
+    [System.NonSerialized]
     public bool isRunning = false;
+    [System.NonSerialized]
     public bool isCrawling = false;
 
     [System.Serializable]
@@ -376,7 +378,7 @@ public class CharacterMotor : MonoBehaviour
         if (!useFixedUpdate)
             UpdateFunction();
 
-        if (transform.position.y < -50) 
+        if (transform.position.y < -50)
             transform.position = new Vector3(-0.5915604f, 7f, -2.44369f);
     }
 
