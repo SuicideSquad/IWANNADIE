@@ -1,0 +1,14 @@
+\select@language {english}
+\contentsline {chapter}{\relax \fontsize {14.4}{18}\selectfont Introduction}{4}
+\contentsline {chapter}{\numberline {1}Individual Presentations}{5}
+\contentsline {section}{\numberline {1.1}Cl\IeC {\'e}ment}{5}
+\contentsline {section}{\numberline {1.2}Thibaut}{5}
+\contentsline {section}{\numberline {1.3}Aymeric}{6}
+\contentsline {section}{\numberline {1.4}Thibault}{6}
+\contentsline {chapter}{\numberline {2}Synopsis}{7}
+\contentsline {chapter}{\numberline {3}Structure}{8}
+\contentsline {chapter}{\numberline {4}Main points of development}{9}
+\contentsline {section}{\numberline {4.1}Task distribution}{10}
+\contentsline {section}{\numberline {4.2}Objectives for each presentation}{11}
+\contentsline {section}{\numberline {4.3}Material costs}{12}
+\contentsline {chapter}{\relax \fontsize {14.4}{18}\selectfont Conclusion}{13}

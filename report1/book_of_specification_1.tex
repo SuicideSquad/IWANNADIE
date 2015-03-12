@@ -1,0 +1,63 @@
+\documentclass[twoside,12pt]{report}	%automatic offset in margins for binding
+
+\usepackage[utf8]{inputenc}		%to use accents (only used for "Clément", in fact)
+\usepackage[frenchb,english]{babel}	%to use proper french formatting when needed while keeping english formatting when not
+\usepackage{geometry}			%to change margins
+\usepackage[super]{nth}			%for numerical ordering
+\usepackage[table]{xcolor}			%to put color in tables
+
+%useless stuff as we use a custom title page
+\title{Book of Specifications}
+\author{Clément Gillard
+	\and Aymeric Alixe
+	\and Thibault Chamoy
+	\and Thibaut Cherel}
+
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{0\p@}%
+  {
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+
+\renewcommand{\@makeschapterhead}[1]{%
+  \vspace*{0\p@}%
+  {
+    \interlinepenalty\@M
+    \Huge \bfseries #1\par\nobreak
+    \vskip 40\p@
+  }}
+
+\newcommand{\cg}{\cellcolor{gray!50}}%shortcut for gray cells
+\newcommand{\cc}{\cellcolor{cyan!50}}%shortcut for blue cells
+\newcommand{\cp}[1]{\cellcolor{gray!#1} #1\%}%shortcut for grayscale cells
+\newcolumntype{a}{>{\columncolor{gray!80}}c}
+\makeatother
+
+\begin{document}
+
+	\input{title.tex}
+
+	\newpage
+
+	\tableofcontents
+
+	\newpage
+	\phantom{}
+	\newpage
+	
+	\input{intro.tex}
+	
+	\input{presentations.tex}
+	
+	\input{synopsis.tex}
+	
+	\input{structure.tex}
+
+	\input{development.tex}
+
+	\input{conclusion.tex}
+
+\end{document}
