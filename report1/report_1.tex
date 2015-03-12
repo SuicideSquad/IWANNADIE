@@ -4,7 +4,9 @@
 \usepackage[frenchb,english]{babel}	%to use proper french formatting when needed while keeping english formatting when not
 \usepackage{geometry}			%to change margins
 \usepackage[super]{nth}			%for numerical ordering
-\usepackage[table]{xcolor}			%to put color in tables
+\usepackage[table]{xcolor}		%to put color in tables
+\usepackage{graphicx}			%to include pictures
+\usepackage{wrapfig}			%for text wrapping around pictures
 
 %useless stuff as we use a custom title page
 \title{Book of Specifications}
@@ -45,18 +47,18 @@
 	\tableofcontents
 
 	\newpage
-	\phantom{}
-	\newpage
-	
+
 	\input{intro.tex}
-	
+
 	\input{presentations.tex}
-	
+
 	\input{synopsis.tex}
-	
+
 	\input{structure.tex}
 
 	\input{development.tex}
+
+	\input{progress.tex}
 
 	\input{conclusion.tex}
 
