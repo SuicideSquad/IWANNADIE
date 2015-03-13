@@ -46,19 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\ClimbLadder.cs" />
-     <Compile Include="Assets\Scripts\CollisionBoxesLvl1\Collisionbox1.cs" />
-     <Compile Include="Assets\Scripts\CollisionBoxesLvl1\Collisionbox2.cs" />
-     <Compile Include="Assets\Scripts\CollisionBoxesLvl1\Collisionbox3.cs" />
-     <Compile Include="Assets\Scripts\CollisionBoxesLvl1\TheEnd.cs" />
-     <Compile Include="Assets\Scripts\CollisionBoxesLvl2\CollisionBox4.cs" />
-     <Compile Include="Assets\Scripts\CollisionBoxesLvl2\CollisionBox5.cs" />
-     <Compile Include="Assets\Scripts\CollisionBoxesLvl2\CollisionBox6.cs" />
-     <Compile Include="Assets\Scripts\FadingScript.cs" />
-     <Compile Include="Assets\Scripts\InputBehaviour.cs" />
+     <Compile Include="Assets\script\ChangeSceneOnClickScript.cs" />
+     <Compile Include="Assets\script\ClimbLadder.cs" />
+     <Compile Include="Assets\script\Fading.cs" />
+     <Compile Include="Assets\script\FadingScript.cs" />
+     <Compile Include="Assets\script\InputBehaviour.cs" />
+     <Compile Include="Assets\script\TheEnd.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
- <HintPath>H:/git/IWANNADIE/New Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
+ <HintPath>C:/Users/Aym'/Desktop/New Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

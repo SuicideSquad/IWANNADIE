@@ -1,0 +1,40 @@
+Initialize engine version: 5.0.0f4 (5b98b70ebeb9)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 820M    (ID=0x1140)
+    Vendor:   NVIDIA
+    VRAM:     1994 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  1.060 seconds
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Aym'\Desktop\New Unity Project\I_Wanna_Die_Data\Managed\System.Core.dll (this message is harmless)
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 35.648052 ms
+System memory in use before: 61.1 MB.
+System memory in use after: 60.3 MB.
+
+Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 3263.
+Total: 9.008447 ms (FindLiveObjects: 0.304094 ms CreateObjectMapping: 0.116352 ms MarkObjects: 8.517401 ms  DeleteObjects: 0.067839 ms)
+
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 9.036056 ms
+System memory in use before: 60.3 MB.
+System memory in use after: 60.3 MB.
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 3263.
+Total: 1.118956 ms (FindLiveObjects: 0.353790 ms CreateObjectMapping: 0.089926 ms MarkObjects: 0.635797 ms  DeleteObjects: 0.035891 ms)
+
