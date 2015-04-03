@@ -29,6 +29,8 @@ public class CharacterMotor : MonoBehaviour
     public bool isRunning = false;
     [System.NonSerialized]
     public bool isCrawling = false;
+    [System.NonSerialized]
+    public bool isClimbing = false;
 
     [System.Serializable]
     public class CharacterMotorMovement
