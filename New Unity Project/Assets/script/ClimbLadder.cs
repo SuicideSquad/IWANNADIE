@@ -27,7 +27,7 @@ public class ClimbLadder : MonoBehaviour
         cm.movement.velocity.y = 0f;
         if (Input.GetButton("Jump"))
             cm.transform.Translate(Vector3.up * climbingSpeed * Time.deltaTime);
-        if (Input.GetButton("Crawl"))
+        if (Input.GetButton("Crawl") && !Physics.Raycast(cm.transform.position, Vector3.down, 1.05f))
             cm.transform.Translate(Vector3.down * climbingSpeed * Time.deltaTime);
     }
 

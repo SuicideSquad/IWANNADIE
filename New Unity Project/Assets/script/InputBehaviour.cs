@@ -62,7 +62,7 @@ public class InputBehaviour : MonoBehaviour
         {
             transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(transform.localScale.y, defaultHeight, elapsedSinceUncrawling / animationTime), transform.localScale.x);
             if (elapsedSinceUncrawling / animationTime <= 1)
-                transform.Translate(Vector3.up * Mathf.Lerp(0, defaultHeight - transform.localScale.y, (elapsedSinceUncrawling+Time.deltaTime) / animationTime));
+                transform.Translate(Vector3.up * Mathf.Lerp(0, defaultHeight - transform.localScale.y, (elapsedSinceUncrawling + Time.deltaTime) / animationTime));
         }
     }
 }

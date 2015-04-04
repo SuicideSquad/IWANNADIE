@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\script\ChangeSceneOnClickScript.cs" />
      <Compile Include="Assets\script\ClimbLadder.cs" />
+     <Compile Include="Assets\script\Door.cs" />
      <Compile Include="Assets\script\Fading.cs" />
      <Compile Include="Assets\script\FadingScript.cs" />
      <Compile Include="Assets\script\InputBehaviour.cs" />
