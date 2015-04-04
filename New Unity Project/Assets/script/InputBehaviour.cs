@@ -3,50 +3,62 @@ using System.Collections;
 
 public class InputBehaviour : MonoBehaviour
 {
-
     CharacterMotor cm;
-    CharacterController cc;
+    //CharacterController cc;
     float defaultHeight;
+    float elapsedSinceUncrawling;
+    float elapsedSinceCrawling;
 
     [SerializeField]
-    float crawlingHeightFactor = 0.2f;
+    float crawlingHeightFactor = 0.5f;
+    [SerializeField]
+    float animationTime = 1f;
 
     void Start()
     {
-        cm = gameObject.GetComponent<CharacterMotor>();
-        cc = gameObject.GetComponent<CharacterController>();
-        defaultHeight = cc.height;
+        cm = GetComponent<CharacterMotor>();
+        defaultHeight = transform.localScale.y;
     }
 
     void Update()
     {
-		if (Input.GetButton("Quit")) {
-			Application.Quit();
-				}
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetButton("Quit"))
+        {
+            Application.Quit();
+        }
+        if (Input.GetKey(KeyCode.Y))
             Time.timeScale = 0.5f;
         else
             Time.timeScale = 1f;
 
+        /*##########RUNNING##########*/
         if (Input.GetButton("Run") && cm.grounded)
             cm.isRunning = true;
         if (!Input.GetButton("Run") && cm.grounded)
             cm.isRunning = false;
 
+        /*##########CRAWLING##########*/
+        elapsedSinceCrawling += Time.deltaTime;
+        elapsedSinceUncrawling += Time.deltaTime;
         if (Input.GetButton("Crawl") && cm.grounded && !cm.isCrawling && !cm.isClimbing)
+        {
             cm.isCrawling = true;
-        if (!Input.GetButton("Crawl") && cm.grounded
-            && !Physics.Raycast(gameObject.transform.position, Vector3.up, defaultHeight * (1 - crawlingHeightFactor))
-            && !Physics.Raycast(gameObject.transform.position, Vector3.forward,1f))
+            elapsedSinceCrawling = 0;
+        }
+        if (!Input.GetButton("Crawl") && cm.grounded && cm.isCrawling)
+        {
             cm.isCrawling = false;
+            elapsedSinceUncrawling = 0;
+        }
+        if (Physics.Raycast(transform.position, Vector3.up, 1f) && !cm.isCrawling)
+            cm.isCrawling = true;
         cm.jumping.enabled = !cm.isCrawling;
         if (cm.isCrawling)
-        {
-            cc.height = Mathf.Lerp(cc.height, defaultHeight * crawlingHeightFactor, Time.deltaTime * 10);
-        }
+            transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(transform.localScale.y, defaultHeight * crawlingHeightFactor, elapsedSinceCrawling / animationTime), transform.localScale.x);
         else
         {
-            cc.height = Mathf.Lerp(cc.height, defaultHeight, Time.deltaTime * 10);
+            transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(transform.localScale.y, defaultHeight, elapsedSinceUncrawling / animationTime), transform.localScale.x);
+            transform.Translate(Vector3.up * Mathf.Lerp(0, defaultHeight - transform.localScale.y, elapsedSinceUncrawling / animationTime));
         }
     }
 }
