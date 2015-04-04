@@ -4,7 +4,6 @@ using System.Collections;
 public class InputBehaviour : MonoBehaviour
 {
     CharacterMotor cm;
-    //CharacterController cc;
     float defaultHeight;
     float elapsedSinceUncrawling;
     float elapsedSinceCrawling;
@@ -18,6 +17,10 @@ public class InputBehaviour : MonoBehaviour
     {
         cm = GetComponent<CharacterMotor>();
         defaultHeight = transform.localScale.y;
+
+        //so that they don't screw up the start of the game
+        elapsedSinceCrawling = float.MaxValue;
+        elapsedSinceUncrawling = float.MaxValue;
     }
 
     void Update()
@@ -26,7 +29,7 @@ public class InputBehaviour : MonoBehaviour
         {
             Application.Quit();
         }
-        if (Input.GetKey(KeyCode.Y))
+        if (Input.GetKey(KeyCode.T))
             Time.timeScale = 0.5f;
         else
             Time.timeScale = 1f;
@@ -58,7 +61,8 @@ public class InputBehaviour : MonoBehaviour
         else
         {
             transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(transform.localScale.y, defaultHeight, elapsedSinceUncrawling / animationTime), transform.localScale.x);
-            transform.Translate(Vector3.up * Mathf.Lerp(0, defaultHeight - transform.localScale.y, elapsedSinceUncrawling / animationTime));
+            if (elapsedSinceUncrawling / animationTime <= 1)
+                transform.Translate(Vector3.up * Mathf.Lerp(0, defaultHeight - transform.localScale.y, (elapsedSinceUncrawling+Time.deltaTime) / animationTime));
         }
     }
 }
