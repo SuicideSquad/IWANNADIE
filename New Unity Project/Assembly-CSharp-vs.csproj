@@ -46,13 +46,12 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\script\ChangeSceneOnClickScript.cs" />
-     <Compile Include="Assets\script\ClimbLadder.cs" />
-     <Compile Include="Assets\script\Door.cs" />
-     <Compile Include="Assets\script\Fading.cs" />
-     <Compile Include="Assets\script\FadingScript.cs" />
-     <Compile Include="Assets\script\InputBehaviour.cs" />
-     <Compile Include="Assets\script\TheEnd.cs" />
+     <Compile Include="Assets\Scripts\ChangeSceneOnClickScript.cs" />
+     <Compile Include="Assets\Scripts\ClimbLadder.cs" />
+     <Compile Include="Assets\Scripts\Door.cs" />
+     <Compile Include="Assets\Scripts\Fading.cs" />
+     <Compile Include="Assets\Scripts\InputBehaviour.cs" />
+     <Compile Include="Assets\Scripts\TheEnd.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="Assembly-UnityScript-firstpass">
  <HintPath>H:/git/IWANNADIE/New Unity Project/Library/ScriptAssemblies/Assembly-UnityScript-firstpass.dll</HintPath>

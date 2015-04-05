@@ -14,13 +14,13 @@ public class Door : MonoBehaviour
     {
         elapsed += Time.deltaTime;
         if (isOpen)
-            transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, -1, 0, 1), elapsed/animationTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, -1, 0, 1), elapsed / animationTime);
         else
-            transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, 0, 0, 1), elapsed/animationTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, 0, 0, 1), elapsed / animationTime);
+        //FOR TESTING PURPOSES ONLY. REMOVE WHEN DONE
         if (elapsed > 2)
         {
             elapsed = 0;
-            print("hey " + Time.time);
             isOpen = !isOpen;
         }
     }
