@@ -381,7 +381,7 @@ public class CharacterMotor : MonoBehaviour
             UpdateFunction();
 
         if (transform.position.y < -50)
-            transform.position = new Vector3(-0.5915604f, 7f, -2.44369f);
+            Application.LoadLevel(Application.loadedLevel);
     }
 
     private Vector3 ApplyInputVelocityChange(Vector3 velocity)
