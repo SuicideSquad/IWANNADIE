@@ -11,7 +11,7 @@ public class ClimbLadder : MonoBehaviour
 
     void Start()
     {
-        cm = GameObject.Find("First Person Controller").GetComponent<CharacterMotor>();
+        cm = GameObject.Find("Player").GetComponent<CharacterMotor>();
         grav = cm.movement.gravity;
     }
 
