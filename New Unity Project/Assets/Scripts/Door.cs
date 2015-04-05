@@ -8,7 +8,7 @@ public class Door : MonoBehaviour
     [SerializeField]
     float animationTime = 1f;
 
-    float elapsed;
+    float elapsed;//elapsed time since last animation
 
     void Update()
     {
@@ -17,21 +17,34 @@ public class Door : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, -1, 0, 1), elapsed / animationTime);
         else
             transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, 0, 0, 1), elapsed / animationTime);
-        //FOR TESTING PURPOSES ONLY. REMOVE WHEN DONE
-        if (elapsed > 2)
+    }
+
+    void OnTriggerStay(Collider other)
+    {
+        if (Input.GetKeyDown(KeyCode.E) && elapsed < animationTime)
         {
-            elapsed = 0;
-            isOpen = !isOpen;
+            print(Time.time + ":\t" + other.name + " pressed E!");
+            switchPosition();
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void switchPosition()
     {
-        print("truc");
-        if (Input.GetKey(KeyCode.E))
-        {
-            isOpen = !isOpen;
-            elapsed = 0;
-        }
+        elapsed = 0;
+        isOpen = !isOpen;
+    }
+
+    public void open()
+    {
+        print("opening door");
+        elapsed = 0;
+        isOpen = true;
+    }
+
+    public void close()
+    {
+        print("closing door");
+        elapsed = 0;
+        isOpen = false;
     }
 }
