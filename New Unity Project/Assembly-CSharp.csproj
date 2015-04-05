@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Attributes.cs" />
      <Compile Include="Assets\Scripts\ChangeSceneOnClickScript.cs" />
      <Compile Include="Assets\Scripts\ClimbLadder.cs" />
      <Compile Include="Assets\Scripts\Door.cs" />

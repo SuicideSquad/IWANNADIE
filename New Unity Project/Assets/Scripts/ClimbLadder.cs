@@ -7,11 +7,13 @@ public class ClimbLadder : MonoBehaviour
     float climbingSpeed = 5f;
 
     CharacterMotor cm;
+    Attributes attr;
     float grav;
 
     void Start()
     {
         cm = GameObject.Find("Player").GetComponent<CharacterMotor>();
+        attr = GameObject.Find("Player").GetComponent<Attributes>();
         grav = cm.movement.gravity;
     }
 
@@ -19,7 +21,7 @@ public class ClimbLadder : MonoBehaviour
     {
         cm.movement.gravity = 0;
         cm.movement.velocity = Vector3.zero;
-        cm.isClimbing = true;
+        attr.isClimbing = true;
     }
 
     void OnTriggerStay(Collider other)
@@ -34,6 +36,6 @@ public class ClimbLadder : MonoBehaviour
     void OnTriggerExit(Collider other)
     {
         cm.movement.gravity = grav;
-        cm.isClimbing = false;
+        attr.isClimbing = false;
     }
 }

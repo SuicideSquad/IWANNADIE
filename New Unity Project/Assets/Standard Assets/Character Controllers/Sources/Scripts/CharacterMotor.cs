@@ -25,22 +25,17 @@ public class CharacterMotor : MonoBehaviour
     [System.NonSerialized]
     public bool inputJump = false;
 
-    [System.NonSerialized]
-    public bool isRunning = false;
-    [System.NonSerialized]
-    public bool isCrawling = false;
-    [System.NonSerialized]
-    public bool isClimbing = false;
-
     [System.Serializable]
     public class CharacterMotorMovement
     {
         // The maximum horizontal speed when moving
-        public float maxForwardWalkingSpeed = 3.0f;
-        public float maxSidewaysSpeed = 2.0f;
-        public float maxBackwardWalkingSpeed = 2.0f;
+        public float maxForwardWalkingSpeed = 6.0f;
+        public float maxSidewaysSpeed = 5.0f;
+        public float maxBackwardWalkingSpeed = 5.0f;
         public float maxForwardRunSpeed = 12.0f;
         public float maxCrawlSpeed = 3.0f;
+        public float maxForwardSpeed = 6.0f;
+        public float maxBackwardSpeed = 5.0f;
 
         // Curve for multiplying speed based on slope(negative = downwards)
         public AnimationCurve slopeSpeedMultiplier = new AnimationCurve(new Keyframe(-90, 1), new Keyframe(0, 1), new Keyframe(90, 0));
@@ -649,16 +644,7 @@ public class CharacterMotor : MonoBehaviour
             return 0;
         else
         {
-            float maxForwardSpeed = movement.maxForwardWalkingSpeed;
-            float maxBackwardSpeed = movement.maxBackwardWalkingSpeed;
-            if (isRunning)
-                maxForwardSpeed = movement.maxForwardRunSpeed;
-            if (isCrawling)
-            {
-                maxForwardSpeed = movement.maxCrawlSpeed;
-                maxBackwardSpeed = maxForwardSpeed;
-            }
-            float zAxisEllipseMultiplier = (desiredMovementDirection.z > 0 ? maxForwardSpeed : maxBackwardSpeed) / movement.maxSidewaysSpeed;
+            float zAxisEllipseMultiplier = (desiredMovementDirection.z > 0 ? movement.maxForwardSpeed : movement.maxBackwardSpeed) / movement.maxSidewaysSpeed;
             Vector3 temp = new Vector3(desiredMovementDirection.x, 0, desiredMovementDirection.z / zAxisEllipseMultiplier).normalized;
             float length = new Vector3(temp.x, 0, temp.z * zAxisEllipseMultiplier).magnitude * movement.maxSidewaysSpeed;
             return length;

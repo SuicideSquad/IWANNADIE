@@ -4,6 +4,7 @@ using System.Collections;
 public class InputBehaviour : MonoBehaviour
 {
     CharacterMotor cm;
+    Attributes attr;
     float defaultHeight;
     float elapsedSinceUncrawling;
     float elapsedSinceCrawling;
@@ -16,6 +17,7 @@ public class InputBehaviour : MonoBehaviour
     void Start()
     {
         cm = GetComponent<CharacterMotor>();
+        attr = GetComponent<Attributes>();
         defaultHeight = transform.localScale.y;
 
         //so that they don't screw up the start of the game
@@ -36,33 +38,44 @@ public class InputBehaviour : MonoBehaviour
 
         /*##########RUNNING##########*/
         if (Input.GetButton("Run") && cm.grounded)
-            cm.isRunning = true;
+            attr.isRunning = true;
         if (!Input.GetButton("Run") && cm.grounded)
-            cm.isRunning = false;
+            attr.isRunning = false;
 
         /*##########CRAWLING##########*/
         elapsedSinceCrawling += Time.deltaTime;
         elapsedSinceUncrawling += Time.deltaTime;
-        if (Input.GetButton("Crawl") && cm.grounded && !cm.isCrawling && !cm.isClimbing)
+        if (Input.GetButton("Crawl") && cm.grounded && !attr.isCrawling && !attr.isClimbing)
         {
-            cm.isCrawling = true;
+            attr.isCrawling = true;
             elapsedSinceCrawling = 0;
         }
-        if (!Input.GetButton("Crawl") && cm.grounded && cm.isCrawling)
+        if (!Input.GetButton("Crawl") && cm.grounded && attr.isCrawling)
         {
-            cm.isCrawling = false;
+            attr.isCrawling = false;
             elapsedSinceUncrawling = 0;
         }
-        if (Physics.Raycast(transform.position, Vector3.up, 1f) && !cm.isCrawling)
-            cm.isCrawling = true;
-        cm.jumping.enabled = !cm.isCrawling;
-        if (cm.isCrawling)
+        if (Physics.Raycast(transform.position, Vector3.up, 1f) && !attr.isCrawling)
+            attr.isCrawling = true;
+        cm.jumping.enabled = !attr.isCrawling;
+        if (attr.isCrawling)
             transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(transform.localScale.y, defaultHeight * crawlingHeightFactor, elapsedSinceCrawling / animationTime), transform.localScale.x);
         else
         {
             transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(transform.localScale.y, defaultHeight, elapsedSinceUncrawling / animationTime), transform.localScale.x);
             if (elapsedSinceUncrawling / animationTime <= 1)
                 transform.Translate(Vector3.up * Mathf.Lerp(0, defaultHeight - transform.localScale.y, (elapsedSinceUncrawling + Time.deltaTime) / animationTime));
+        }
+
+        /*##########APPLYING CHANGES ON SPEED##########*/
+        cm.movement.maxForwardSpeed = cm.movement.maxForwardWalkingSpeed;
+        cm.movement.maxBackwardSpeed = cm.movement.maxBackwardWalkingSpeed;
+        if (attr.isRunning)
+            cm.movement.maxForwardSpeed = cm.movement.maxForwardRunSpeed;
+        if (attr.isCrawling)
+        {
+            cm.movement.maxForwardSpeed = cm.movement.maxCrawlSpeed;
+            cm.movement.maxBackwardSpeed = cm.movement.maxCrawlSpeed;
         }
     }
 }
