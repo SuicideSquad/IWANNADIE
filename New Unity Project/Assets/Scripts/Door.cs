@@ -7,6 +7,8 @@ public class Door : MonoBehaviour
     bool isOpen = false;
     [SerializeField]
     float animationTime = 1f;
+    [SerializeField]
+    bool reversed = false;
 
     float elapsed;//elapsed time since last animation
 
@@ -14,18 +16,9 @@ public class Door : MonoBehaviour
     {
         elapsed += Time.deltaTime;
         if (isOpen)
-            transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, -1, 0, 1), elapsed / animationTime);
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, new Quaternion(0, reversed ? 1 : -1, 0, 1), elapsed / animationTime);
         else
-            transform.rotation = Quaternion.Slerp(transform.rotation, new Quaternion(0, 0, 0, 1), elapsed / animationTime);
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (Input.GetKeyDown(KeyCode.E) && elapsed < animationTime)
-        {
-            print(Time.time + ":\t" + other.name + " pressed E!");
-            switchPosition();
-        }
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, new Quaternion(0, 0, 0, 1), elapsed / animationTime);
     }
 
     public void switchPosition()
