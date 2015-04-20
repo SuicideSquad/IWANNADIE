@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Fading.cs" />
      <Compile Include="Assets\Scripts\InputBehaviour.cs" />
      <Compile Include="Assets\Scripts\MovingPlatform.cs" />
+     <Compile Include="Assets\Scripts\NetworkPlayer.cs" />
      <Compile Include="Assets\Scripts\TheEnd.cs" />
      <Compile Include="Assets\test.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
