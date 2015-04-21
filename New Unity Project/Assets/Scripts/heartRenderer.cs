@@ -3,8 +3,10 @@ using System.Collections;
 
 public class heartRenderer : MonoBehaviour
 {
+    float life = 0;
     void Update()
     {
-        transform.Translate(Vector3.forward * Mathf.Sin(Time.time * 4) / 100);
+        life += Time.deltaTime;
+        transform.Translate(Vector3.forward * Mathf.Sin(life * 4) / 100);
     }
 }

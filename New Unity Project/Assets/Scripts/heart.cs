@@ -15,7 +15,7 @@ public class heart : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        if (c.name == "Player")
+        if (c.name == "Network_Player")
         {
             c.GetComponentInParent<NetworkPlayer>().HealthBonus(10);
             Destroy(gameObject);
