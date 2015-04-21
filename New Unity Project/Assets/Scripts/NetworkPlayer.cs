@@ -64,5 +64,6 @@ public class NetworkPlayer : MonoBehaviour
     public void HealthBonus(int health)
     {
         lifepoints = Mathf.Clamp(lifepoints + health, 0f, 20f);
+        print(lifepoints);
     }
 }
