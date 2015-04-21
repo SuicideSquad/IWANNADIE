@@ -43,19 +43,19 @@ public class NetworkPlayer : MonoBehaviour
         }
     }
 
-    void Cut()
+    public void Cut()
     {
         cutCooldown = 30f;
         cut = true;
     }
 
-    void SpeedBonus()
+    public void SpeedBonus()
     {
         speedCooldown = 30f;
         cm.movement.maxForwardRunSpeed = defaultSpeed * 2;
     }
 
-    void JumpBonus()
+    public void JumpBonus()
     {
         jumpCooldown = 30f;
         cm.jumping.baseHeight = defaultJump * 2;

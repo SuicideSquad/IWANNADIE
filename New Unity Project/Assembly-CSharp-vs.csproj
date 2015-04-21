@@ -55,9 +55,10 @@
      <Compile Include="Assets\Scripts\MovingPlatform.cs" />
      <Compile Include="Assets\Scripts\NetworkPlayer.cs" />
      <Compile Include="Assets\Scripts\TheEnd.cs" />
+     <Compile Include="Assets\Scripts\blade.cs" />
      <Compile Include="Assets\Scripts\heart.cs" />
+     <Compile Include="Assets\Scripts\heartAnimator.cs" />
      <Compile Include="Assets\Scripts\heartCannon.cs" />
-     <Compile Include="Assets\Scripts\heartRenderer.cs" />
      <Compile Include="Assets\test.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\license.txt" />

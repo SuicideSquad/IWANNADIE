@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class heartRenderer : MonoBehaviour
+public class heartAnimator : MonoBehaviour
 {
     float life = 0;
     void Update()
