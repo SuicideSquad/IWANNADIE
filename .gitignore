@@ -219,3 +219,9 @@ pip-log.txt
 metadata/
 ShaderCache/
 *.meta
+Temp/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+ScriptAssemblies/
