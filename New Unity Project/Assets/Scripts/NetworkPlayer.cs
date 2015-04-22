@@ -58,7 +58,7 @@ public class NetworkPlayer : MonoBehaviour
     public void JumpBonus()
     {
         jumpCooldown = 30f;
-        cm.jumping.baseHeight = defaultJump * 2;
+        cm.jumping.baseHeight = defaultJump * 10;
     }
 
     public void HealthBonus(int health)

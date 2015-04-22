@@ -59,6 +59,9 @@
      <Compile Include="Assets\Scripts\heart.cs" />
      <Compile Include="Assets\Scripts\heartAnimator.cs" />
      <Compile Include="Assets\Scripts\heartCannon.cs" />
+     <Compile Include="Assets\Scripts\jumpAnimator.cs" />
+     <Compile Include="Assets\Scripts\jumpBonus.cs" />
+     <Compile Include="Assets\Scripts\speedBonus.cs" />
      <Compile Include="Assets\test.cs" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
      <None Include="Assets\license.txt" />
