@@ -4,11 +4,10 @@ using System.Collections;
 public class NetworkPlayer : MonoBehaviour
 {
     float lifepoints = 20f;
-    float cutCooldown = 30f;
-    float speedCooldown = 30f;
-    float jumpCooldown = 30f;
+    float cutCooldown = 0;
+    float speedCooldown = 0;
+    float jumpCooldown = 0;
 
-    bool cut = false;
     CharacterMotor cm;
     float defaultSpeed;
     float defaultJump;
@@ -22,12 +21,10 @@ public class NetworkPlayer : MonoBehaviour
 
     void Update()
     {
-        if (cut)
+        if (cutCooldown > 0)
         {
             lifepoints -= Time.deltaTime;
             cutCooldown -= Time.deltaTime;
-            if (cutCooldown < 0)
-                cut = false;
         }
         if (speedCooldown > 0)
         {
@@ -46,7 +43,6 @@ public class NetworkPlayer : MonoBehaviour
     public void Cut()
     {
         cutCooldown = 30f;
-        cut = true;
     }
 
     public void SpeedBonus()
@@ -64,6 +60,5 @@ public class NetworkPlayer : MonoBehaviour
     public void HealthBonus(int health)
     {
         lifepoints = Mathf.Clamp(lifepoints + health, 0f, 20f);
-        print(lifepoints);
     }
 }
