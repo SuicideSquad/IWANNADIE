@@ -20,7 +20,12 @@ public class Door : MonoBehaviour
         else
             transform.localRotation = Quaternion.Slerp(transform.localRotation, new Quaternion(0, 0, 0, 1), elapsed / animationTime);
     }
-
+	void OnTriggerStay(Collider c){
+		if (Input.GetKey(KeyCode.E)&&c.name=="Player") {
+			switchPosition();
+		}
+			
+		}
     public void switchPosition()
     {
         elapsed = 0;

@@ -1,0 +1,171 @@
+Initialize engine version: 5.0.1f1 (5a2e8fe35a68)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce 820M    (ID=0x1140)
+    Vendor:   NVIDIA
+    VRAM:     1994 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-CSharp-firstpass.dll (this message is harmless)
+Loading C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-CSharp-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-UnityScript-firstpass.dll (this message is harmless)
+Loading C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\Assembly-UnityScript-firstpass.dll into Unity Child Domain
+Platform assembly: C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.145 seconds
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\System.Core.dll (this message is harmless)
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 93a0 -> priority: 1 
+Saving parameters...
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+Parameters:Save() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Parameters.cs:112)
+Click:OnMouseDown() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Click.cs:58)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:17)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:153)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32, Int32) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:135)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+Parameters saved to IWANNADIE.dat
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+Parameters:Save() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Parameters.cs:134)
+Click:OnMouseDown() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Click.cs:58)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:17)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:153)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32, Int32) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:135)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+Saving parameters...
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+Parameters:Save() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Parameters.cs:112)
+Click:OnMouseDown() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Click.cs:58)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:17)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:153)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32, Int32) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:135)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+Parameters saved to IWANNADIE.dat
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+Parameters:Save() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Parameters.cs:134)
+Click:OnMouseDown() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Click.cs:58)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:17)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:153)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32, Int32) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:135)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.967436 ms
+System memory in use before: 85.0 MB.
+System memory in use after: 85.4 MB.
+
+Unloading 38 unused Assets to reduce memory usage. Loaded Objects now: 9247.
+Total: 1.884128 ms (FindLiveObjects: 0.573481 ms CreateObjectMapping: 0.269780 ms MarkObjects: 0.948177 ms  DeleteObjects: 0.091504 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.617916 ms
+System memory in use before: 86.5 MB.
+System memory in use after: 85.9 MB.
+
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 9247.
+Total: 1.002212 ms (FindLiveObjects: 0.257948 ms CreateObjectMapping: 0.112803 ms MarkObjects: 0.606612 ms  DeleteObjects: 0.024059 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 6.026291 ms
+System memory in use before: 116.7 MB.
+System memory in use after: 115.9 MB.
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 3359.
+Total: 0.474877 ms (FindLiveObjects: 0.136862 ms CreateObjectMapping: 0.037075 ms MarkObjects: 0.239805 ms  DeleteObjects: 0.060345 ms)
+
+Platform assembly: C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\I_Wanna_Die_Data\Managed\System.dll (this message is harmless)
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.164952 ms
+System memory in use before: 119.3 MB.
+System memory in use after: 119.4 MB.
+
+Unloading 64 unused Assets to reduce memory usage. Loaded Objects now: 7465.
+Total: 1.249511 ms (FindLiveObjects: 0.288712 ms CreateObjectMapping: 0.113986 ms MarkObjects: 0.537589 ms  DeleteObjects: 0.308433 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 11.372214 ms
+System memory in use before: 137.2 MB.
+System memory in use after: 135.7 MB.
+
+Unloading 44 unused Assets to reduce memory usage. Loaded Objects now: 2392.
+Total: 0.567171 ms (FindLiveObjects: 0.100576 ms CreateObjectMapping: 0.041019 ms MarkObjects: 0.237044 ms  DeleteObjects: 0.187742 ms)
+
+Saving parameters...
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+Parameters:Save() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Parameters.cs:112)
+Click:OnMouseDown() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Click.cs:58)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:17)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:153)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32, Int32) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:135)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+Parameters saved to IWANNADIE.dat
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+Parameters:Save() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Parameters.cs:134)
+Click:OnMouseDown() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Click.cs:58)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:17)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:153)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32, Int32) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:135)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+Saving parameters...
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+Parameters:Save() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Parameters.cs:112)
+Click:OnMouseDown() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Click.cs:58)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:17)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:153)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32, Int32) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:135)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+
+Parameters saved to IWANNADIE.dat
+UnityEngine.Debug:Internal_Log(Int32, String, Object)
+UnityEngine.Debug:Log(Object)
+UnityEngine.MonoBehaviour:print(Object) (at C:\buildslave\unity\build\artifacts\generated\common\runtime\UnityEngineMonoBehaviour.gen.cs:108)
+Parameters:Save() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Parameters.cs:134)
+Click:OnMouseDown() (at C:\Users\Aym'\Documents\IWANNADIE\IWANNADIE\New Unity Project\Assets\Scripts\Click.cs:58)
+UnityEngine.GameObject:SendMessage(String, Object, SendMessageOptions)
+UnityEngine.HitInfo:SendMessage(String) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:17)
+UnityEngine.SendMouseEvents:SendEvents(Int32, HitInfo) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:153)
+UnityEngine.SendMouseEvents:DoSendMouseEvents(Int32, Int32) (at C:\buildslave\unity\build\Runtime\Export\MouseEvents.cs:135)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineMonoBehaviour.gen.cs Line: 108)
+

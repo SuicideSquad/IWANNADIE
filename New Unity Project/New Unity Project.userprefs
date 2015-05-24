@@ -1,8 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\TheEnd.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Click.cs">
     <Files>
-      <File FileName="Assets\Scripts\TheEnd.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Parameters.cs" Line="143" Column="1" />
+      <File FileName="Assets\Scripts\InputBehaviour.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\die.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\blade.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Door.cs" Line="1" Column="1" />
+      <File FileName="Assets\Energy.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\TheEnd.cs" Line="21" Column="1" />
+      <File FileName="Assets\Scripts\Attributes.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ClimbLadder.cs" Line="42" Column="1" />
+      <File FileName="Assets\Scripts\Click.cs" Line="24" Column="29" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

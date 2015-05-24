@@ -29,15 +29,16 @@ public class InputBehaviour : MonoBehaviour
     {
         if (Input.GetButton("Quit"))
         {
-            Application.Quit();
+            Application.LoadLevel("MENU");
         }
         if (Input.GetKey(KeyCode.T))
             Time.timeScale = 0.5f;
         else
             Time.timeScale = 1f;
 
-        /*##########RUNNING##########*/
-        if (Input.GetButton("Run") && cm.grounded)
+		/*##########RUNNING##########*/
+		attr.isRunning = attr.canRun;
+        if (Input.GetButton("Run") && attr.canRun && cm.grounded)
             attr.isRunning = true;
         if (!Input.GetButton("Run") && cm.grounded)
             attr.isRunning = false;
