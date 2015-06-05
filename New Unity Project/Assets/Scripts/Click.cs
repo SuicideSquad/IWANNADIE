@@ -15,11 +15,14 @@ public class Click : MonoBehaviour
         public float animationtime = 2f;
         public bool doubleMovement = false;
         public Vector3 via;
+        public enum networkAction { DoNothing, Open, Close }
+        public networkAction networkView;
 
         [System.NonSerialized]
         public bool moving;
 
         Transform cam;
+        Transform networkBackground;
         Vector3 origin;
         Quaternion rotation;
         float time;
@@ -31,6 +34,11 @@ public class Click : MonoBehaviour
             rotation = cam.rotation;
             time = 0;
             moving = true;
+            if (networkView == networkAction.Close)
+            {
+                GameObject.Find("NetworkCanvas/NetworkBackground").GetComponent<NetworkScreen>().Close();
+                time = -1;
+            }
         }
 
         public void Update()
@@ -45,7 +53,11 @@ public class Click : MonoBehaviour
                 cam.position = Vector3.Lerp(origin, moveTo, time / animationtime);
             cam.rotation = Quaternion.Lerp(rotation, rotateTo, time / animationtime);
             if (time > animationtime)
+            {
                 moving = false;
+                if (networkView == networkAction.Open)
+                    GameObject.Find("NetworkCanvas").GetComponent<NetworkScreen>().Open();
+            }
         }
     }
 
@@ -63,7 +75,6 @@ public class Click : MonoBehaviour
         {
             case Actions.move:
                 movement.Init(GameObject.Find("Main Camera"));
-                Parameters.Save();
                 break;
             case Actions.play:
                 //do something

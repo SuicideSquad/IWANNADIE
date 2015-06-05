@@ -1,0 +1,16 @@
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\Assembly-CSharp.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\Assembly-CSharp.pdb
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\Assembly-UnityScript-firstpass.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\UnityEditor.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\UnityEditor.iOS.Extensions.Xcode.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\UnityEngine.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\UnityEngine.UI.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\Mono.Cecil.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\Unity.SerializationLogic.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\Unity.DataContract.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\Unity.CecilTools.dll
+H:\git\IWANNADIE\New Unity Project\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+H:\git\IWANNADIE\New Unity Project\obj\Debug\Assembly-CSharp-vs.csprojResolveAssemblyReference.cache
+H:\git\IWANNADIE\New Unity Project\obj\Debug\Assembly-CSharp.dll
+H:\git\IWANNADIE\New Unity Project\obj\Debug\Assembly-CSharp.pdb

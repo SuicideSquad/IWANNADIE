@@ -46,23 +46,25 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Energy.cs" />
-     <Compile Include="Assets\Health.cs" />
-     <Compile Include="Assets\Key.cs" />
-     <Compile Include="Assets\PickableBlock.cs" />
      <Compile Include="Assets\Scripts\Attributes.cs" />
      <Compile Include="Assets\Scripts\ChangeSceneOnClickScript.cs" />
      <Compile Include="Assets\Scripts\Click.cs" />
      <Compile Include="Assets\Scripts\ClimbLadder.cs" />
      <Compile Include="Assets\Scripts\Door.cs" />
+     <Compile Include="Assets\Scripts\Energy.cs" />
      <Compile Include="Assets\Scripts\Fading.cs" />
+     <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\InputBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Key.cs" />
      <Compile Include="Assets\Scripts\MovingPlatform.cs" />
+     <Compile Include="Assets\Scripts\NetworkScreen.cs" />
+     <Compile Include="Assets\Scripts\Networker.cs" />
      <Compile Include="Assets\Scripts\Parameters.cs" />
+     <Compile Include="Assets\Scripts\PickableBlock.cs" />
      <Compile Include="Assets\Scripts\TheEnd.cs" />
      <Compile Include="Assets\Scripts\blade.cs" />
      <Compile Include="Assets\Scripts\die.cs" />
-     <Compile Include="Assets\test.cs" />
+     <Compile Include="Assets\Scripts\test.cs" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
