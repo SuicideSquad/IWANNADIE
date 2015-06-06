@@ -36,7 +36,7 @@ public class Click : MonoBehaviour
             moving = true;
             if (networkView == networkAction.Close)
             {
-                GameObject.Find("NetworkCanvas/NetworkBackground").GetComponent<NetworkScreen>().Close();
+                GameObject.Find("NetworkCanvas").GetComponent<NetworkScreen>().Close();
                 time = -1;
             }
         }

@@ -12,28 +12,28 @@ public class NetworkScreen : MonoBehaviour
         new Vector3(16,1,1),//step
         new Vector3(16, 8, 1)};//final point
     bool finished;
-    public static Text title {get;private set;} 
+    public static Text title;
     public static Transform screen;
 
     void Start()
     {
+        screen = transform;
         transform.FindChild("Return button").localScale = Vector3.zero;
         transform.FindChild("NetworkBackground").localScale = Vector3.zero;
         title = transform.FindChild("Title").GetComponent<Text>();
         title.text = "";
     }
 
-    public static Text GetDisplay()
+    public static Text GetDisplay(Transform parent, string name)//generates a Text gameobject in the middle of the screen
     {
         Text t = Instantiate(title);
-        t.transform.SetParent(title.transform);
-        t.rectTransform.SetParent(title.rectTransform);
-        t.rectTransform.SetParent(title.transform);
-        t.transform.SetParent(title.rectTransform);
-        t.transform.localPosition = Vector3.zero;
-        t.rectTransform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
-        t.transform.localRotation = new Quaternion(0, 0, 0, 1);
-        t.alignment = TextAnchor.MiddleCenter;
+        t.name = name;
+        Transform rect = t.transform;
+        rect.SetParent(parent);
+        rect.localPosition = Vector3.zero;
+        rect.localRotation = Quaternion.identity;
+        rect.localScale = new Vector3(1, 1, 1);
+        t.text = "";
         return t;
     }
 
@@ -51,14 +51,21 @@ public class NetworkScreen : MonoBehaviour
         {
             if (opened)
             {
-                transform.FindChild("Return button").localScale = new Vector3(-2, 2, 2);
-                Networker.Connect();
+                transform.FindChild("Return button").localScale = new Vector3(-25, 10, 10);
+                title.text = "Connecting...";
+                StartCoroutine(Networker.Connect());
             }
             else
             {
-                transform.localScale = Vector3.zero;
+                transform.FindChild("NetworkBackground").localScale = Vector3.zero;
             }
             finished = true;
+        }
+        if (finished && opened)
+        {
+            for (int n = 0; n < Networker.length; n++)
+                if (GUI.Button(new Rect(1200, 250 + n * 100, 100, 90), "Join this room"))
+                    Networker.Join(n);
         }
     }
 
@@ -76,5 +83,6 @@ public class NetworkScreen : MonoBehaviour
         transform.FindChild("Return button").localScale = Vector3.zero;
         title.text = "";
         finished = false;
+        Destroy(GameObject.Find("NetworkCanvas/Networker display"));
     }
 }
