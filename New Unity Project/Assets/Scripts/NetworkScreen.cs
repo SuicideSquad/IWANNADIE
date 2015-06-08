@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 public class NetworkScreen : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class NetworkScreen : MonoBehaviour
     bool finished;
     public static Text title;
     public static Transform screen;
+    Text pseudo, create;
+    string playername, roomname;
+    System.Random r = new System.Random();
 
     void Start()
     {
@@ -22,6 +26,8 @@ public class NetworkScreen : MonoBehaviour
         transform.FindChild("NetworkBackground").localScale = Vector3.zero;
         title = transform.FindChild("Title").GetComponent<Text>();
         title.text = "";
+        playername = "Player" + r.Next(100000);
+        roomname = "My room";
     }
 
     public static Text GetDisplay(Transform parent, string name)//generates a Text gameobject in the middle of the screen
@@ -63,6 +69,31 @@ public class NetworkScreen : MonoBehaviour
         }
         if (finished && opened)
         {
+            if (Networker.length > 0)
+            {
+                if (pseudo == null)
+                {
+                    pseudo = GetDisplay(transform, "Pseudo");
+                    pseudo.transform.localPosition = new Vector3(-580, -260, 0);
+                    pseudo.text = "Enter your name: ";
+                }
+                playername = GUI.TextArea(new Rect(520, 707, 375, 20), playername, 32);
+                playername = Regex.Replace(playername, @"[^a-zA-Z0-9 ]", "");
+            }
+            if (Networker.done == 1)//only once
+            {
+                create = GetDisplay(transform, "Create");
+                create.transform.localPosition = new Vector3(200, -260, 0);
+                create.text = "Create a room: ";
+                Networker.done = 2;
+            }
+            if (Networker.done > 0)
+            {
+                roomname = GUI.TextArea(new Rect(1250, 707, 375, 20), roomname, 32);
+                roomname = Regex.Replace(roomname, @"[^a-zA-Z0-9 ]", "");
+                if (GUI.Button(new Rect(1650, 691, 100, 50), "Create"))
+                    print("stuff");
+            }
             for (int n = 0; n < Networker.length; n++)
                 if (GUI.Button(new Rect(1200, 250 + n * 100, 100, 90), "Join this room"))
                     Networker.Join(n);
@@ -74,6 +105,7 @@ public class NetworkScreen : MonoBehaviour
         opened = true;
         start = Time.time;
         finished = false;
+        Networker.done = 0;
     }
 
     public void Close()
@@ -83,6 +115,9 @@ public class NetworkScreen : MonoBehaviour
         transform.FindChild("Return button").localScale = Vector3.zero;
         title.text = "";
         finished = false;
+        StopCoroutine(Networker.Connect());
         Destroy(GameObject.Find("NetworkCanvas/Networker display"));
+        Destroy(GameObject.Find("NetworkCanvas/Pseudo"));
+        Destroy(GameObject.Find("NetworkCanvas/Create"));
     }
 }

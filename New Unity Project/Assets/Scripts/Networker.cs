@@ -24,6 +24,8 @@ public class Networker : MonoBehaviour
 
     public static int length { get { return rooms.Count; } }
 
+    public static int done = 0;
+
     public static Rect getRekt(int roomnum)
     {
         GameObject.Find("NetworkCanvas/Networker Display/r" + roomnum).GetComponent<RectTransform>();
@@ -35,7 +37,7 @@ public class Networker : MonoBehaviour
         while (true)
         {
             yield return null;
-            Text disp = NetworkScreen.GetDisplay(NetworkScreen.screen.transform, "Networker display");
+            Text disp = NetworkScreen.GetDisplay(NetworkScreen.screen, "Networker display");
             WebClient wc = new WebClient();
             rooms = new List<room>();
             yield return null;
@@ -63,7 +65,8 @@ public class Networker : MonoBehaviour
             catch (Exception e)
             {
                 NetworkScreen.title.text = "Error";
-                disp.text = "There was an error while parsing data from the server\n" + e.Message;
+                disp.text = "There was an error while parsing data from the server\n" + e;
+                print(e);
                 yield break;
             }
             NetworkScreen.title.text = "List of rooms";
@@ -97,6 +100,7 @@ public class Networker : MonoBehaviour
                 population.text += r.population;
                 n++;
             }
+            done = 1;
             yield return new WaitForSeconds(15);
             Destroy(GameObject.Find("NetworkCanvas/Networker display"));
         }
