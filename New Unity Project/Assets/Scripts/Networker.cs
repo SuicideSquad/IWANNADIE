@@ -106,54 +106,53 @@ public class Networker : MonoBehaviour
 
     static public IEnumerator Create()
     {
-        //NetworkScreen.state = NetworkScreen.State.Create;
-        //connecting = false;
-        //NetworkScreen.title.text = "Create a room";
-        //NetworkScreen.Clear();
-        //Destroy(GameObject.Find("NetworkCanvas/Networker display"));
-        //Text disp = NetworkScreen.GetDisplay(NetworkScreen.screen, "Networker display");
-        //disp.alignment = TextAnchor.MiddleCenter;
-        //disp.text = "Please wait...";
-        //WebClient wc = new WebClient();
-        //yield return null;
-        //string answer = "";
-        //try
-        //{
-        //    answer = wc.DownloadString("http://suicide-squad.esy.es/game_actions/create.php?name=" + NetworkScreen.roomname);
-        //}
-        //catch (Exception e)
-        //{
-        //    answer = e.ToString();
-        //}
-        //if (answer.IndexOf("ok") != 0)
-        //{
-        //    NetworkScreen.title.text = "Error";
-        //    disp.text = answer + "\n\n5";
-        //    yield return new WaitForSeconds(1);
-        //    disp.text = answer + "\n\n4";
-        //    yield return new WaitForSeconds(1);
-        //    disp.text = answer + "\n\n3";
-        //    yield return new WaitForSeconds(1);
-        //    disp.text = answer + "\n\n2";
-        //    yield return new WaitForSeconds(1);
-        //    disp.text = answer + "\n\n1";
-        //    yield return new WaitForSeconds(1);
-        //    Destroy(disp);
-        //    Destroy(disp.gameObject);
-        //    NetworkScreen.Restart();
-        //    yield break;
-        //}
-        //Network.InitializeSecurity();
-        //Network.InitializeServer(4, 25002, !Network.HavePublicAddress());
-        //Network.Connect("localhost", 25002);
-        //while (true)
-        //{
-        //    disp.text = "Connected players:\n\n" + Network.connections.Length;
-        //    if (GUI.Button(new Rect(1200, 500, 100, 100), "Start game session"))
-        //        print("truc");
-        //    yield return null;
-        //}
-        return null;
+        NetworkScreen.state = NetworkScreen.State.Create;
+        connecting = false;
+        NetworkScreen.title.text = "Create a room";
+        NetworkScreen.Clear();
+        Destroy(GameObject.Find("NetworkCanvas/Networker display"));
+        Text disp = NetworkScreen.GetDisplay(NetworkScreen.screen, "Networker display");
+        disp.alignment = TextAnchor.MiddleCenter;
+        disp.text = "Please wait...";
+        WebClient wc = new WebClient();
+        yield return null;
+        string answer = "";
+        try
+        {
+            answer = wc.DownloadString("http://suicide-squad.esy.es/game_actions/create.php?name=" + NetworkScreen.roomname);
+        }
+        catch (Exception e)
+        {
+            answer = e.ToString();
+        }
+        if (answer.IndexOf("ok") != 0)
+        {
+            NetworkScreen.title.text = "Error";
+            disp.text = answer + "\n\n5";
+            yield return new WaitForSeconds(1);
+            disp.text = answer + "\n\n4";
+            yield return new WaitForSeconds(1);
+            disp.text = answer + "\n\n3";
+            yield return new WaitForSeconds(1);
+            disp.text = answer + "\n\n2";
+            yield return new WaitForSeconds(1);
+            disp.text = answer + "\n\n1";
+            yield return new WaitForSeconds(1);
+            Destroy(disp);
+            Destroy(disp.gameObject);
+            NetworkScreen.Restart();
+            yield break;
+        }
+        Network.InitializeSecurity();
+        Network.InitializeServer(4, 25002, !Network.HavePublicAddress());
+        Network.Connect("localhost", 25002);
+        while (true)
+        {
+            disp.text = "Connected players:\n\n" + Network.connections.Length;
+            if (GUI.Button(new Rect(1200, 500, 100, 100), "Start game session"))
+                print("truc");
+            yield return null;
+        }
     }
 
     static public IEnumerator Join(int roomnum)

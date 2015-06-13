@@ -51,7 +51,6 @@ public class Parameters : MonoBehaviour
                 byte level_ciphered = (byte)save.Read();
                 level = (int)((level_ciphered - key) ^ key);
 
-                print("Deciphered level:" + level);
                 save.Close();
                 return;
             }
@@ -115,7 +114,6 @@ public class Parameters : MonoBehaviour
 
     public static void Save()
     {
-        print("Saving parameters...");
         StreamWriter save = new StreamWriter("IWANNADIE.dat", false);
 
         save.WriteLine(soundlevel);
@@ -139,7 +137,6 @@ public class Parameters : MonoBehaviour
         save.Write((char)(level_ciphered + key));
 
         save.Close();
-        print("Parameters saved to IWANNADIE.dat");
     }
 
     public static void LevelChanged()

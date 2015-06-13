@@ -16,7 +16,7 @@ public class NetworkScreen : MonoBehaviour
     public static Text title;
     public static Transform screen;
     static Text pseudo, create;
-    public static string playername;
+    public static string playername, roomname;
 
     public enum State { List, Create, Join };
 
@@ -24,12 +24,15 @@ public class NetworkScreen : MonoBehaviour
 
     void Start()
     {
+        Parameters.Load();
+        /*#################*/
         screen = transform;
         transform.FindChild("Return button").localScale = Vector3.zero;
         transform.FindChild("NetworkBackground").localScale = Vector3.zero;
         title = transform.FindChild("Title").GetComponent<Text>();
         title.text = "";
         playername = Parameters.pseudonym;
+        roomname = "My room";
         state = State.List;
     }
 
@@ -92,6 +95,13 @@ public class NetworkScreen : MonoBehaviour
                     create.text = "Create a room: ";
                     Networker.done = 2;
                 }
+                if (Networker.done > 0)
+                {
+                    roomname = GUI.TextArea(new Rect(1250, 707, 375, 20), roomname, 32);
+                    roomname = Regex.Replace(roomname, @"[^a-zA-Z0-9 ]", "");
+                    if (GUI.Button(new Rect(1650, 691, 100, 50), "Create"))
+                        StartCoroutine(Networker.Create());
+                }
                 for (int n = 0; n < Networker.length; n++)
                     if (GUI.Button(new Rect(1200, 250 + n * 100, 100, 90), "Join this room"))
                         StartCoroutine(Networker.Join(n));
@@ -140,5 +150,12 @@ public class NetworkScreen : MonoBehaviour
         Networker.done = 0;
         state = State.List;
         finished = false;
+    }
+
+    void OnApplicationQuit()
+    {
+        new System.Net.WebClient().DownloadString("http://suicide-squad.esy.es/game_actions/quit.php?room=" + NetworkScreen.roomname);
+        Parameters.pseudonym = playername;
+        Parameters.Save();
     }
 }
