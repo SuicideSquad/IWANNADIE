@@ -26,15 +26,12 @@ public class Networker : MonoBehaviour
 
     public static int done = 0;
 
-    public static Rect getRekt(int roomnum)
-    {
-        GameObject.Find("NetworkCanvas/Networker Display/r" + roomnum).GetComponent<RectTransform>();
-        return new Rect();
-    }
+    static bool connecting;
 
     static public IEnumerator Connect()
     {
-        while (true)
+        connecting = true;
+        while (connecting)
         {
             yield return null;
             Text disp = NetworkScreen.GetDisplay(NetworkScreen.screen, "Networker display");
@@ -100,14 +97,104 @@ public class Networker : MonoBehaviour
                 population.text += r.population;
                 n++;
             }
-            done = 1;
+            done += 1;
             yield return new WaitForSeconds(15);
-            Destroy(GameObject.Find("NetworkCanvas/Networker display"));
+            if (connecting)
+                Destroy(GameObject.Find("NetworkCanvas/Networker display"));
         }
     }
 
-    static public void Join(int roomnum)
+    static public IEnumerator Create()
     {
-        print("joining " + roomnum);
+        //NetworkScreen.state = NetworkScreen.State.Create;
+        //connecting = false;
+        //NetworkScreen.title.text = "Create a room";
+        //NetworkScreen.Clear();
+        //Destroy(GameObject.Find("NetworkCanvas/Networker display"));
+        //Text disp = NetworkScreen.GetDisplay(NetworkScreen.screen, "Networker display");
+        //disp.alignment = TextAnchor.MiddleCenter;
+        //disp.text = "Please wait...";
+        //WebClient wc = new WebClient();
+        //yield return null;
+        //string answer = "";
+        //try
+        //{
+        //    answer = wc.DownloadString("http://suicide-squad.esy.es/game_actions/create.php?name=" + NetworkScreen.roomname);
+        //}
+        //catch (Exception e)
+        //{
+        //    answer = e.ToString();
+        //}
+        //if (answer.IndexOf("ok") != 0)
+        //{
+        //    NetworkScreen.title.text = "Error";
+        //    disp.text = answer + "\n\n5";
+        //    yield return new WaitForSeconds(1);
+        //    disp.text = answer + "\n\n4";
+        //    yield return new WaitForSeconds(1);
+        //    disp.text = answer + "\n\n3";
+        //    yield return new WaitForSeconds(1);
+        //    disp.text = answer + "\n\n2";
+        //    yield return new WaitForSeconds(1);
+        //    disp.text = answer + "\n\n1";
+        //    yield return new WaitForSeconds(1);
+        //    Destroy(disp);
+        //    Destroy(disp.gameObject);
+        //    NetworkScreen.Restart();
+        //    yield break;
+        //}
+        //Network.InitializeSecurity();
+        //Network.InitializeServer(4, 25002, !Network.HavePublicAddress());
+        //Network.Connect("localhost", 25002);
+        //while (true)
+        //{
+        //    disp.text = "Connected players:\n\n" + Network.connections.Length;
+        //    if (GUI.Button(new Rect(1200, 500, 100, 100), "Start game session"))
+        //        print("truc");
+        //    yield return null;
+        //}
+        return null;
+    }
+
+    static public IEnumerator Join(int roomnum)
+    {
+        NetworkScreen.state = NetworkScreen.State.Join;
+        connecting = false;
+        NetworkScreen.title.text = "Join a room";
+        NetworkScreen.Clear();
+        Destroy(GameObject.Find("NetworkCanvas/Networker display"));
+        Text disp = NetworkScreen.GetDisplay(NetworkScreen.screen, "Networker display");
+        disp.alignment = TextAnchor.MiddleCenter;
+        disp.text = "Please wait...";
+        WebClient wc = new WebClient();
+        yield return null;
+        string answer = "";
+        try
+        {
+            answer = wc.DownloadString("http://suicide-squad.esy.es/game_actions/join.php?room=" + rooms[roomnum].name);
+        }
+        catch (Exception e)
+        {
+            answer = e.ToString();
+        }
+        if (answer.IndexOf("ok") != 0)
+        {
+            NetworkScreen.title.text = "Error";
+            disp.text = answer + "\n\n5";
+            yield return new WaitForSeconds(1);
+            disp.text = answer + "\n\n4";
+            yield return new WaitForSeconds(1);
+            disp.text = answer + "\n\n3";
+            yield return new WaitForSeconds(1);
+            disp.text = answer + "\n\n2";
+            yield return new WaitForSeconds(1);
+            disp.text = answer + "\n\n1";
+            yield return new WaitForSeconds(1);
+            Destroy(disp);
+            Destroy(disp.gameObject);
+            NetworkScreen.Restart();
+            yield break;
+        }
+        Network.Connect(answer.Substring(3), 25002);
     }
 }

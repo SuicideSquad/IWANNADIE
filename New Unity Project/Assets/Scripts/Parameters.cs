@@ -11,6 +11,8 @@ public class Parameters : MonoBehaviour
 
     public static KeyCode forward, backward, left, right, crawl, jump, run, interact;
 
+    public static string pseudonym;
+
     public static int level;
 
     public static void Load()
@@ -43,6 +45,8 @@ public class Parameters : MonoBehaviour
                 read = save.ReadLine();
                 interact = (KeyCode)Enum.Parse(typeof(KeyCode), read);
 
+                pseudonym = save.ReadLine();
+
                 byte key = (byte)save.Read();
                 byte level_ciphered = (byte)save.Read();
                 level = (int)((level_ciphered - key) ^ key);
@@ -68,6 +72,8 @@ public class Parameters : MonoBehaviour
         jump = KeyCode.Space;
         run = KeyCode.LeftShift;
         interact = KeyCode.E;
+
+        pseudonym = "Player" + new System.Random().Next(100000);
 
         level = 1;
 
@@ -124,6 +130,8 @@ public class Parameters : MonoBehaviour
         save.WriteLine(jump);
         save.WriteLine(run);
         save.WriteLine(interact);
+
+        save.WriteLine(pseudonym);
 
         byte key = (byte)rand.Next();
         byte level_ciphered = (byte)(((byte)level) ^ key);
