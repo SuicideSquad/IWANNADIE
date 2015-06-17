@@ -22,6 +22,8 @@ public class NetworkScreen : MonoBehaviour
 
     public static State state;
 
+    public Transform networkPlayer;
+
     void Start()
     {
         Parameters.Load();
@@ -86,7 +88,7 @@ public class NetworkScreen : MonoBehaviour
                         pseudo.text = "Enter your name: ";
                     }
                     playername = GUI.TextArea(new Rect(520, 707, 375, 20), playername, 32);
-                    playername = Regex.Replace(playername, @"[^a-zA-Z0-9 ]", "");
+                    playername = Regex.Replace(playername, @"[^a-zA-Z0-9 -_]", "");
                 }
                 if (Networker.done == 1)//only once
                 {
@@ -98,13 +100,36 @@ public class NetworkScreen : MonoBehaviour
                 if (Networker.done > 0)
                 {
                     roomname = GUI.TextArea(new Rect(1250, 707, 375, 20), roomname, 32);
-                    roomname = Regex.Replace(roomname, @"[^a-zA-Z0-9 ]", "");
+                    roomname = Regex.Replace(roomname, @"[^a-zA-Z0-9 -_]", "");
                     if (GUI.Button(new Rect(1650, 691, 100, 50), "Create"))
                         StartCoroutine(Networker.Create());
                 }
                 for (int n = 0; n < Networker.length; n++)
                     if (GUI.Button(new Rect(1200, 250 + n * 100, 100, 90), "Join this room"))
                         StartCoroutine(Networker.Join(n));
+            }
+        }
+        if (Network.isServer)
+        {
+            if (GUI.Button(new Rect(Screen.width / 2 - 250, Screen.height / 2 + 100, 200, 100), "End server"))
+            {
+                Network.Disconnect();
+                Networker.waiting = false;
+            }
+            if (Network.connections.Length > 0)
+                if (GUI.Button(new Rect(Screen.width / 2 + 50, Screen.height / 2 + 100, 200, 100), "Start game session"))
+                    Networker.waiting = false;
+            if (!Networker.waiting && Networker.map == "")
+            {
+                if (Network.connections.Length > 4)
+                    Networker.map = "networklevel2";
+                else
+                {
+                    if (GUI.Button(new Rect(Screen.width / 2 - 250, Screen.height / 2 + 100, 200, 100), "Play on map 1"))
+                        Networker.map = "networklevel1";
+                    if (GUI.Button(new Rect(Screen.width / 2 + 50, Screen.height / 2 + 100, 200, 100), "Play on map 2"))
+                        Networker.map = "networklevel2";
+                }
             }
         }
     }
@@ -147,6 +172,7 @@ public class NetworkScreen : MonoBehaviour
 
     public static void Restart()
     {
+        Destroy(GameObject.Find("NetworkCanvas/Networker display"));
         Networker.done = 0;
         state = State.List;
         finished = false;
@@ -154,8 +180,16 @@ public class NetworkScreen : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        new System.Net.WebClient().DownloadString("http://suicide-squad.esy.es/game_actions/quit.php?room=" + NetworkScreen.roomname);
+        new System.Net.WebClient().DownloadString("http://suicide-squad.esy.es/game_actions/quit.php?room=" + roomname);
         Parameters.pseudonym = playername;
         Parameters.Save();
+    }
+
+    [RPC]
+    void LoadMap(string map, int id)
+    {
+        Application.LoadLevel(map);
+        Transform spawn = GameObject.Find("Spawn" + id).transform;
+        Network.Instantiate(networkPlayer, spawn.position, spawn.rotation, 0).name = playername;
     }
 }

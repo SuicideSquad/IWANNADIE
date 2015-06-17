@@ -26,7 +26,9 @@ public class Networker : MonoBehaviour
 
     public static int done = 0;
 
-    static bool connecting;
+    public static bool connecting, waiting;
+
+    public static string map;
 
     static public IEnumerator Connect()
     {
@@ -145,14 +147,30 @@ public class Networker : MonoBehaviour
         }
         Network.InitializeSecurity();
         Network.InitializeServer(4, 25002, !Network.HavePublicAddress());
-        Network.Connect("localhost", 25002);
-        while (true)
+        waiting = true;
+        while (waiting)
         {
-            disp.text = "Connected players:\n\n" + Network.connections.Length;
-            if (GUI.Button(new Rect(1200, 500, 100, 100), "Start game session"))
-                print("truc");
+            disp.text = "Connected players:\n\n" + (Network.connections.Length + 1);
             yield return null;
         }
+        if (Network.connections.Length == 0)
+        {
+            disp.text = "Please wait...";
+            yield return null;
+            wc.DownloadString("http://suicide-squad.esy.es/game_actions/quit.php?room=" + NetworkScreen.roomname);
+            NetworkScreen.Restart();
+            Destroy(disp.gameObject);
+            yield break;
+        }
+        disp.text = "Choose which map to play on";
+        map = "";
+        while (map == "")
+            yield return null;
+        NetworkView nv = new NetworkView();
+        int i = 1;
+        foreach (NetworkPlayer p in Network.connections)
+            nv.RPC("LoadMap", p, map, i++);
+        nv.RPC("LoadMap", RPCMode.Server, map, 0);
     }
 
     static public IEnumerator Join(int roomnum)
@@ -195,5 +213,6 @@ public class Networker : MonoBehaviour
             yield break;
         }
         Network.Connect(answer.Substring(3), 25002);
+        disp.text = "Waiting for server's answer...";
     }
 }
